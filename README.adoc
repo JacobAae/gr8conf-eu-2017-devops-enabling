@@ -1,0 +1,29 @@
+= DevOps Enabling Your Team
+
+Slides and code for presentation at GR8Conf EU - 2017
+
+== Abstract
+
+Once you have successfully developped your application in Grails, Ratpack or your other favorite framework, you would like to see it deployed as fast and painless as possible, right?
+
+This talk will cover some of the supporting cast members of a succesful modern infrastructure, that developers can understand and use efficiently, and with good DevOps practices.
+
+Key elements are
+
+* Docker
+* Infrastructure as Code
+* Container Orchestration
+
+The demo-goods will hopefully be on our side, as this talk includes quite some live demos!
+
+
+== To build the slides
+
+Clone the repo and run
+
+ ./gradlew asciidoctor
+
+The slides in HTML version is now available in `build/asciidoc/revealjs/`
+
+A (not so pretty) pdf version is available in the root of this repo
+
