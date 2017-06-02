@@ -1,0 +1,35 @@
+= DevOps Enabling Your Team
+Jacob Aae Mikkelsen
+:numbered:
+:terraformDir: ../../../terraform
+:modulesDir: ../../../modules
+
+
+include::sections/_agenda.adoc[]
+
+include::sections/_goals.adoc[]
+
+include::sections/_infrastructure.adoc[]
+
+include::sections/_rancher.adoc[]
+
+include::sections/_terraform.adoc[]
+
+include::sections/_deploy.adoc[]
+
+
+== Literature
+
+* https://www.terraform.io[]
+* http://www.oreilly.com/pub/e/3615[]
+* http://rancher.com[]
+
+
+
+== Questions
+
+[NOTE.speaker]
+====
+Done
+====
+

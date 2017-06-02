@@ -1,0 +1,22 @@
+== Application Orchestration
+
+image::rancher-logo.jpg[]
+
+[NOTE.speaker]
+====
+Could select other - but Rancher is Cool
+====
+
+
+=== Rancher
+
+"Rancher Labs develops open source software that makes it easy to deploy and manage Docker containers and Kubernetes in production on any infrastructure."
+-- Rancher Website
+
+
+
+
+=== Rancher Hosts
+
+image::rancher-hosts.png[cover]
+

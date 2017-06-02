@@ -1,0 +1,415 @@
+== !
+image::terraform.png[]
+
+[NOTE.speaker]
+====
+Infrastructure as Code with Terraform
+
+HashiCorp
+====
+
+
+
+=== Terraform
+
+[quote, Terraform website]
+Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.
+
+
+=== Key Features
+
+* Infrastructure as Code
+* Execution Plans
+* Resource Graph
+* Change Automation
+
+=== We get
+
+* Repeatable
+* Versioned
+* Documented
+* Automated
+* Testable
+* Shareable
+
+Handling of infrastructure
+
+
+////
+=== Installation
+
+Download binaries and place on path
+
+I downloaded to
+
+ ~/terraform
+
+And added to `.bashrc`
+
+ export PATH="$PATH:/home/jacob/terraform/"
+
+[NOTE.speaker]
+Demo using `terraform` in cli
+
+////
+
+
+=== How it Works
+
+Terraform creates a D-A-G of tasks
+
+image::dag.jpg[,70%]
+
+
+=== Configuration
+
+The set of files used to describe infrastructure in Terraform is simply known as a Terraform _configuration_.
+
+
+=== Configuration
+
+HashiCorp Configuration Language (HCL)
+
+* Less verbose than JSON
+* More concise than YAML
+* Restricted subset (compared to programming language)
+* Any tool can also accept JSON
+* Allows comments
+
+
+
+=== Key components
+
+* Providers
+* Resourses
+* Provisioners
+
+
+
+=== Providers
+
+Account details for fx AWS
+
+
+=== Resourses
+
+Logical representation of "Physical" resource (physical item, even though it is a virtual server)
+
+Defines the desired state of a resource
+
+
+
+=== Provisioners
+
+Post-creation "initialization" of resource
+
+Has access to the current properties of a resource
+
+
+
+
+=== Terraform files
+
+All .tf /.tf.json files in working directory are loaded and appended (in alphabetical order)
+
+Duplicate resources not allowed
+
+=== Modules
+
+Modules are reusable components that can take be configured
+with inputs and deliver output for use in other scripts
+
+
+== Sample Infrastructure
+
+
+=== Structure
+
+ .
+ ├── modules
+ │   └── host-workers
+ │       ├── workers.tf
+ │       ├── inputs.tf
+ │       └── outputs.tf
+ └── terraform
+     ├── aws.tf
+     ├── cluster.tf
+     ├── dns.tf
+     ├── terraform.tf
+     ├── variables.tf
+     └── vpc.tf
+
+
+=== Structure comments
+
+* *modules:* Shared code, here describing the configuration of a rancher host machine
+* *terraform:* Terraform files for the cluster we are trying to create
+
+
+=== `aws.tf`
+
+[source,groovy,indent=0]
+----
+include::{terraformDir}/aws.tf[tags=aws-provider]
+----
+
+
+
+////
+
+TODO Consider including this
+
+=== terraform.tfvars
+
+Properties file
+
+----
+region="eu-west-1"
+aws_account_id="422298440573"
+name="devcluster"
+availability_zones="eu-west-1a,eu-west-1b,eu-west-1c"
+----
+
+////
+
+=== `variables.tf` (1)
+
+
+[source,groovy,indent=0]
+----
+include::{terraformDir}/variables.tf[tags=vars1]
+----
+
+
+=== `variables.tf` (2)
+
+[source,groovy,indent=0]
+----
+include::{terraformDir}/variables.tf[tags=vars2]
+----
+
+[NOTE.speaker]
+====
+
+====
+
+
+
+=== `vpc.tf` (1)
+
+[source,groovy,indent=0]
+----
+include::{terraformDir}/vpc.tf[tags=vpc-vpc]
+----
+
+[NOTE.speaker]
+====
+* Using module from github
+* Tags are optional
+====
+
+
+=== `vpc.tf` (2)
+
+[source,groovy,indent=0]
+----
+include::{terraformDir}/vpc.tf[tags=vpc-inside]
+----
+
+
+[NOTE.speaker]
+====
+* Security group for internal communication
+====
+
+
+=== `vpc.tf` (3)
+
+[source,groovy,indent=0]
+----
+include::{terraformDir}/vpc.tf[tags=vpc-web-traffic]
+----
+
+[NOTE.speaker]
+====
+* Security group for web communication
+====
+
+
+=== `vpc.tf` (4)
+
+[source,groovy,indent=0]
+----
+include::{terraformDir}/vpc.tf[tags=vpc-nat]
+----
+
+[NOTE.speaker]
+====
+* NAT gateway for private subnet to reach outside VPC
+====
+
+
+
+
+== Host Worker module
+
+=== `inputs.tf` (1)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/inputs.tf[tags=module-input-1]
+----
+
+
+=== `inputs.tf` (2)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/inputs.tf[tags=module-input-2]
+----
+
+
+=== `inputs.tf` (3)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/inputs.tf[tags=module-input-3]
+----
+
+=== `inputs.tf` (4)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/inputs.tf[tags=module-input-4]
+----
+
+=== `inputs.tf` (5)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/inputs.tf[tags=module-input-5]
+----
+
+=== `inputs.tf` (6)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/inputs.tf[tags=module-input-6]
+----
+
+
+
+
+=== `outputs.tf`
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/outputs.tf[]
+----
+
+=== `workers.tf` (1)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/workers.tf[tags=workers1a]
+----
+
+More on next slide
+
+
+=== `workers.tf` (2)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/workers.tf[tags=workers1b]
+----
+
+Continued from previous slide
+
+
+=== `workers.tf` (3)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/workers.tf[tags=workers2]
+----
+
+
+=== `workers.tf` (4)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/workers.tf[tags=workers3]
+----
+
+=== `workers.tf` (5)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/workers.tf[tags=workers4]
+----
+
+=== `workers.tf` (6)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/workers.tf[tags=workers5]
+----
+
+=== `workers.tf` (7)
+
+[source,groovy,indent=0]
+----
+include::{modulesDir}/host-workers/workers.tf[tags=workers6]
+----
+
+
+
+
+== Cluster
+
+=== `cluster.tf` (1)
+
+[source,groovy]
+----
+include::{terraformDir}/cluster.tf[tags=cluster-hosts]
+----
+
+
+=== `cluster.tf` (2)
+
+[source,groovy]
+----
+include::{terraformDir}/cluster.tf[tags=cluster-elb]
+----
+
+== DNS
+
+=== `dns.tf` (1)
+
+[source,groovy]
+----
+include::{terraformDir}/dns.tf[tags=dns]
+----
+
+=== `cluster.tf` (3)
+
+[source,groovy]
+----
+include::{terraformDir}/cluster.tf[tags=cluster-dns]
+----
+
+
+
+
+=== Lets spin up some infrastructure!
+
+image::spinup.gif[,40%]
+
+
+
+
+
+
+
+

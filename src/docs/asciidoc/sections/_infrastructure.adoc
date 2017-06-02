@@ -1,0 +1,50 @@
+== Infrastructure
+
+
+=== Requirement
+
+TIP: AWS VPC with hosts that can serve docker images Orchestrated by a Rancher Server
+
+
+[NOTE.speaker]
+====
+AWS Based - but could be other
+====
+
+
+=== !
+
+image::vpc-infrastructure.png[cover]
+
+
+=== Provisioning
+
+* Single machine
+* Single application server
+* Single database server
+
+*Tools*
+
+* Ansible
+* Chef
+* Puppet
+
+
+=== Orchestration
+
+* Making all the singles mingle
+* Connects the applikation server to a valid database server
+* Networking
+* Service discovery
+
+*Tools*
+
+* Terraform
+* CloudFormation
+
+
+[NOTE.speaker]
+====
+CloudFormation - just AWS
+====
+

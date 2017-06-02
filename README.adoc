@@ -27,3 +27,8 @@ The slides in HTML version is now available in `build/asciidoc/revealjs/`
 
 A (not so pretty) pdf version is available in the root of this repo
 
+== To run terraform
+
+ terraform get
+ terraform plan
+ terraform apply

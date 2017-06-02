@@ -1,0 +1,55 @@
+== Goals
+
+* Define a cloud based infrastructure
+** as code
+* Spin up the infrastructure from scratch
+* Docker Orchestration tool
+** Deploy a demo app
+
+
+[NOTE.speaker]
+====
+50 min... Lets get started
+====
+
+=== Motivation
+
+=== Devops
+
+Devops definition
+
+[quote, theagileadmin.com/what-is-devops]
+DevOps is the practice of operations and development engineers participating together in the entire service lifecycle, from design through the development process to production support.
+
+
+=== Devops culture
+
+Primary corollary
+
+[quote, theagileadmin.com/what-is-devops]
+DevOps is also characterized by operations staff making use many of the same techniques as developers for their systems work.
+
+
+=== Reality
+
+In reality, silos exist in IT and DevOps teams are interested in tearing down those silos.
+
+Enable development team to handle deployment and configuration themselves
+
+
+
+=== Requirement
+
+We need to understand the layers below our code
+
+[.step]
+* Hosting platform
+* Domain Names Administration (DNS)
+* Network
+* Automation of infrastructure
+
+[NOTE.speaker]
+That is why we start today
+
+
+
